@@ -1,0 +1,10 @@
+"pt-BR":
+  activerecord:
+    models:
+      user: Usuário
+      atendimento: Atendimento
+    attributes:
+      atendimento:
+        created_at: "Criado em"
+    user:
+        created_at: "Criado em"        
