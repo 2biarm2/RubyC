@@ -7,6 +7,9 @@ class AtendimentosController < ApplicationController
         if user_signed_in?
     @atendimentos = current_user.atendimentos(:user_id => current_user.id).order("created_at DESC")
       end
+       if adm_signed_in?
+    @atendimentos = current_adm.atendimentos(:adm_id => current_adm.id).order("created_at DESC")
+      end
   end
 
 
@@ -18,7 +21,12 @@ class AtendimentosController < ApplicationController
 
   # GET /atendimentos/new
   def new
+    if user_signed_in?
    @atendimento = current_user.atendimentos.build
+    end
+    if adm_signed_in?
+   @atendimento = current_adm.atendimentos.build
+    end
   end
 
   # GET /atendimentos/1/edit
@@ -28,8 +36,13 @@ class AtendimentosController < ApplicationController
   # POST /atendimentos
   # POST /atendimentos.json
   def create
+    if user_signed_in?
     @atendimento = current_user.atendimentos.build(atendimento_params)
-    
+    end
+
+    if adm_signed_in?
+    @atendimento = current_adm.atendimentos.build(atendimento_params)
+    end
 
     respond_to do |format|
       if @atendimento.save

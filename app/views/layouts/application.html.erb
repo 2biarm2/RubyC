@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -49,16 +49,26 @@
         <%= link_to "Sparta300", root_path, class:"navbar-brand"  %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+          
           <% if current_user.present? %>
             <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to "Entrar", new_user_session_path %></li>
           <% end %> 
-            <!--<li><%= link_to "Sair", destroy_user_session_path  %></li>-->
-            <li><%= link_to "Cadastre-se", new_user_registration_path %></li> 
+            <!--<li><%= link_to "Sair", destroy_user_session_path  %></li>
+            <li><%= link_to "Cadastre-se", new_user_registration_path %></li> -->
           <% if user_signed_in? %>           
             <li><%= link_to "Atendimentos", new_atendimento_path  %></li>
           <%end%>
+          <% if adm_signed_in? %>           
+            <li><%= link_to "Atendimentos", new_atendimento_path  %></li>
+            <li><%= link_to "Cadastrar Usuário", new_user_registration_path %></li>
+          <%end%>
+          <% if current_adm.present? %>
+            <li><%= link_to "Sair", destroy_adm_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Entrar", new_adm_session_path %></li>
+          <% end %> 
           </ul>
         </div>
       </div>
